@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\MeasurementController;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,10 @@ Route::group(['middleware' => AuthMiddleware::class], function () {
         Route::group(['prefix' => 'admin'], function (){
 
              Route::get('dashboard', function () {return view('admin.dashboard');})->name('dashboard');
+
+
+             Route::resource('clients', ClientController::class);
+             Route::resource('measurements', MeasurementController::class);
 
     });
 });

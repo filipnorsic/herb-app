@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
@@ -16,6 +17,10 @@ class authService
   // Register user
   $data=$request->safe(['first_name','last_name','email','password']);
   $user=User::create($data);
+  $role=Role::where('name','Admin')->first()->getKey();
+  $user->roles()->attach($role);
+
+
 
 
   Auth::login($user);

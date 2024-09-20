@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Client;
 use App\Models\Measurement;
+use App\Models\Role;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +24,11 @@ class DatabaseSeeder extends Seeder
         Client::factory(15)->create();
         Measurement::query()->delete();
         Measurement::factory(50)->create();
+
+
+        $this->call([
+            RoleSeeder::class,
+        ]);
 
     }
 }
